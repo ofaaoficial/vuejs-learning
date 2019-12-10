@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>VueJS</title>
+</head>
+<body>
+	<div id="app">
+		<label> Nombre: {{ name }}</label>
+		<input type="text" v-on:keyup.enter="loginName">
+		<input type="text" v-on:keyup.alt.enter="loginName">
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		var app = new Vue({
+			el : "#app",
+			data : {
+				name : "nombre"
+			},
+			methods : {
+				loginName: function(event){
+					console.log("Se a presionado una tecla");
+				}
+			}	
+		});
+	</script>
+</body>
+</html>

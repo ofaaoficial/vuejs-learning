@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VueJs - Listas</title>
+</head>
+<body>
+	<div id="vueApp">
+		<ul v-for="person in listPerson">
+			<li><strong>Nombre: </strong>{{ person.name }}</li>
+		</ul>
+		<input type="text" v-model="name" v-on:keyup.enter="newName">
+	
+		<pre>
+			{{ $data }}
+		</pre>
+	</div>	
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		new Vue({
+			el : '#vueApp',
+			data : {
+				listPerson : [
+							{ 'name' : 'Oscar' },
+							{ 'name' : 'Santiago' },
+							{ 'name' : 'Nicolas' },
+				],
+				name : '',
+			},
+			methods : {
+				newName : function(){
+					this.listPerson.push({'name' : this.name});
+					this.name = '';
+				}
+			}
+		})
+	</script>
+</body>
+</html>

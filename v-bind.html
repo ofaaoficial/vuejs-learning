@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VueJs - B-VIND</title>	
+</head>
+<body>
+	<p>Modificar contenido de un atributo</p>
+	<div id="vueApp">
+		<input type="text" v-model="info">
+		
+		<p v-bind:title="info">Texto de relleno ... {{ info }}</p>	
+
+		<br>
+		<hr>
+		<pre>
+			{{ $data }}
+		</pre>
+	</div>	
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		new Vue({
+			el : '#vueApp',
+			data : {
+				info : ''
+			}
+		})
+	</script>
+</body>
+</html>

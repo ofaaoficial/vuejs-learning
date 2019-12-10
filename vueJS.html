@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>VueJS</title>
+</head>
+<body>
+	<div id="app">
+		<p v-text="name"></p>
+		<a v-bind:href="ytlink">YouTube</a>
+		<input type="text" v-bind:value="name" v-model="name">
+		<p v-html="titleHtml"></p>
+
+		<p>Contador {{ contador }}</p>
+		<button @click="aumentar(1)">Aumentar</button>
+		<button @click.once="aumentar(1)">Aumentar una sola vez</button>
+		<button v-on:click="disminuir(1)">Disminuir</button>
+		
+		<button @dblclick="aumentar(10)">Aumentar diez</button>
+		<button v-on:dblclick="disminuir(10)">Disminuir diez</button>
+		<br>
+		<canvas id="canvas" style="widows: 300px; border: 2px solid #000; height: 200px;" v-on:mousemove="actualizarCords"></canvas>	
+		<p>Cordenadas {{ x }}, {{ y }}</p>
+		<p><a v-on:click.prevent="click" href="http://youtube.com/ofaatv">Canal en youtube</a></p>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		var app = new Vue({
+			el : "#app",
+			data : {
+				name : "ofaa",
+				ytlink : "http://www.youtube.com/ofaatv",
+				titleHtml : "<a>ofaa pro</a>",
+				contador : 0,
+				x : 0,
+				y : 0
+			},
+			methods : {
+				aumentar : function(valor){
+					this.contador += valor;
+				},
+				disminuir : function(valor){
+					this.contador -= valor;
+				},
+				actualizarCords : function(event){
+					this.x = event.screenX;
+					this.y = event.screenY;					
+				},
+				click : function(){					
+					alert("¿Estas seguro?");
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS Ejemplos</title>
+</head>
+<body>
+    <div id="app">    
+        <ul>
+            <li> Declaracion
+                <ol>
+                        <li>v-bind:id = :id </li>
+                        <li>v-on:click =  @click</li>
+                        <li>v-model=""</li>
+                </ol>
+            </li>
+            <li>
+                Condicionales y bucles
+                <ol>
+                    <li>v-if & v-else</li>
+                </ol>
+            </li>
+            <li>v-on:submit.prevent</li>
+        </ul>   
+        <h2 v-bind:title="nombre">Hola {{ nombre }}</h2>
+        <input type="text" name="nombre" id="nombre" v-model="nombre">
+
+        <p v-if="ver">Mensaje : Hola guys</p>        
+        <p v-else>Mensaje oculto</p>
+
+        <button v-on:click="cambiarEstado">Cambiar estado</button>
+
+        <ul>
+            <li v-for="nombre in nombres" v-bind:id="nombre">
+                {{ nombre }}
+                {{ nombreAlreves }}
+            </li>
+        </ul>
+
+        <button @click="agregarNombre">Agregar mi nombre</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                nombre : '',
+                ver : true,
+                nombres : [
+                    'oscar',
+                    'felipe',
+                    'santiago'
+                ]
+            },
+            created(){
+                console.log('created');
+            },
+            mounted(){
+                console.log('mounted');
+            },
+            updated(){
+                console.log('updated');
+            },
+            destroyed(){
+                console.log('destroyed');
+            },
+            computed : {
+                nombreAlreves(){
+                    return this.nombre.split('').reverse().join('');
+                }
+            },
+            methods : {
+                cambiarEstado : function (){
+                    this.ver = !this.ver;
+                },
+                agregarNombre(){
+                    if(this.nombre) this.nombres.push(this.nombre);
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
